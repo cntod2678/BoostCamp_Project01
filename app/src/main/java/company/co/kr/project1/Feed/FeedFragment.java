@@ -41,7 +41,7 @@ public class FeedFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         feedRecyclerView = (RecyclerView) view.findViewById(R.id.feed_recyclerView);
-        FeedAdapter feedAdapter = new FeedAdapter(feedItemList);
+        FeedAdapter feedAdapter = new FeedAdapter(getContext(), feedItemList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         feedRecyclerView.setLayoutManager(layoutManager);
         feedRecyclerView.setAdapter(feedAdapter);
