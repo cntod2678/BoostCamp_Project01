@@ -1,13 +1,17 @@
 package company.co.kr.project1.Feed.Header;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import company.co.kr.project1.CircleTransform;
 import company.co.kr.project1.R;
 
 /**
@@ -15,15 +19,17 @@ import company.co.kr.project1.R;
  */
 
 public class HeaderProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<String> user_list = new ArrayList<>();
+    Context mContext;
+    List<Integer> user_list = new ArrayList<>();
 
-    public HeaderProfileAdapter(List<String> user_list) {
+    public HeaderProfileAdapter(Context context, List<Integer> user_list) {
+        mContext = context;
         this.user_list = user_list;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header_feed, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header_profile_feed, parent, false);
         HeaderItemViewHolder headerItemViewHolder = new HeaderItemViewHolder(view);
 
         return headerItemViewHolder;
@@ -32,7 +38,12 @@ public class HeaderProfileAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HeaderItemViewHolder headerItemViewHolder = (HeaderItemViewHolder) holder;
-        headerItemViewHolder.bind();
+        Picasso.with(mContext)
+                .load(user_list.get(position))
+                .resize(200, 200)
+                .centerCrop()
+                .transform(new CircleTransform())
+                .into(headerItemViewHolder.header_profile_imgButton);
     }
 
     @Override

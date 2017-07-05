@@ -18,34 +18,42 @@ import company.co.kr.project1.R;
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_ITEM = 1;
-    private static final int TYPE_HEADER = 2;
+    private static final int TYPE_HEADER_PROFILE = 2;
+    private static final int TYPE_HEADER_MAKE = 3;
 
     Context mContext;
 
     List<FeedItem> feedItemList = new ArrayList<>();
-    List<String> header_list = new ArrayList<>();
+    List<Integer> header_user_list = new ArrayList<>();
 
 
     public FeedAdapter(Context context, List<FeedItem> feedItemList) {
         this.feedItemList = feedItemList;
         mContext = context;
 
-        header_list.add("a");
-        header_list.add("b");
-        header_list.add("c");
-        header_list.add("c");
-        header_list.add("c");
-        header_list.add("c");
-        header_list.add("c");
+        header_user_list.add(R.drawable.ronaldo);
+        header_user_list.add(R.drawable.messi);
+        header_user_list.add(R.drawable.dybala);
+        header_user_list.add(R.drawable.pogba);
+        header_user_list.add(R.drawable.joohyun);
+        header_user_list.add(R.drawable.jiwon);
+        header_user_list.add(R.drawable.morata);
+        header_user_list.add(R.drawable.hummels);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_HEADER) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_feed, parent, false);
-            HeaderViewHolder vh = new HeaderViewHolder(view);
+        if(viewType == TYPE_HEADER_PROFILE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_feed_profile, parent, false);
+            HeaderProfileViewHolder headerProfileViewHolder = new HeaderProfileViewHolder(view);
 
-            return vh;
+            return headerProfileViewHolder;
+        }
+        else if(viewType == TYPE_HEADER_MAKE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_feed_make, parent, false);
+            HeaderMakeViewHolder headerMakeViewHolder = new HeaderMakeViewHolder(view);
+
+            return headerMakeViewHolder;
         }
         else if(viewType == TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_feed_recyclerview, parent, false);
@@ -59,48 +67,70 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(isPositionHeader(position)) {
+        if(getItemViewType(position) == TYPE_HEADER_PROFILE) {
             // Header ViewHolder
-            HeaderViewHolder hvh = (HeaderViewHolder) holder;
+            HeaderProfileViewHolder headerProfileViewHolder = (HeaderProfileViewHolder) holder;
+        }
+        else if(getItemViewType(position) == TYPE_HEADER_MAKE) {
+            HeaderMakeViewHolder headerMakeViewHolder = (HeaderMakeViewHolder) holder;
+            headerMakeViewHolder.bind();
         }
         else {
-            // Item ViewHolder
+            // ItemViewHolder
             ItemViewHolder ivh = (ItemViewHolder) holder;
-            ivh.bind(feedItemList.get(position-1));
+            ivh.bind(feedItemList.get(position-2));
         }
     }
 
     /* Returns viewType for a given position (Header or Item) */
     @Override
     public int getItemViewType(int position) {
-        if (isPositionHeader(position)) {
-            return TYPE_HEADER;
-        }
+        if (getTypePosition(position) == TYPE_HEADER_PROFILE)
+            return TYPE_HEADER_PROFILE;
+        else if (getTypePosition(position) == TYPE_HEADER_MAKE)
+            return TYPE_HEADER_MAKE;
         return TYPE_ITEM;
     }
 
     @Override
     public int getItemCount() {
-        // Contain The Header of RecyclerView + 1
-        return feedItemList.size() + 1;
+        // Contain The Header of RecyclerView + 2
+        return feedItemList.size() + 2;
     }
 
-    private boolean isPositionHeader(int position) {
-        return position == 0;
+    private int getTypePosition(int position) {
+        if(position == 0)
+            return TYPE_HEADER_PROFILE;
+        else if(position == 1)
+            return TYPE_HEADER_MAKE;
+        else
+            return TYPE_ITEM;
     }
 
-    class HeaderViewHolder extends RecyclerView.ViewHolder {
-        private RecyclerView header_recyclerView;
+    class HeaderProfileViewHolder extends RecyclerView.ViewHolder {
+        private RecyclerView header_profile_recyclerView;
 
-        public HeaderViewHolder(View headerView) {
-            super(headerView);
-            header_recyclerView = (RecyclerView) headerView.findViewById(R.id.header_recyclerView);
+        public HeaderProfileViewHolder(View headerProfileView) {
+            super(headerProfileView);
+            header_profile_recyclerView = (RecyclerView) headerProfileView.findViewById(R.id.header_recyclerView);
 
-            HeaderProfileAdapter headerAdapter = new HeaderProfileAdapter(header_list);
+            HeaderProfileAdapter headerAdapter = new HeaderProfileAdapter(mContext, header_user_list);
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-            header_recyclerView.setLayoutManager(layoutManager);
-            header_recyclerView.setAdapter(headerAdapter);
+            header_profile_recyclerView.setLayoutManager(layoutManager);
+            header_profile_recyclerView.setAdapter(headerAdapter);
+        }
+    }
+
+    class HeaderMakeViewHolder extends RecyclerView.ViewHolder {
+        private ImageView header_make_profile;
+        private TextView txtView;
+
+        public HeaderMakeViewHolder(View headerMakeView) {
+            super(headerMakeView);
+        }
+
+        public void bind() {
         }
     }
 
@@ -117,7 +147,6 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             cardView_item_userId_txtView = (TextView) itemView.findViewById(R.id.cardView_item_userId_txtView);
             cardView_item_title_txtView = (TextView) itemView.findViewById(R.id.cardView_item_title_txtView);
             cardView_item_imgView = (ImageView) itemView.findViewById(R.id.cardView_item_imgView);
-
         }
 
         public void bind(FeedItem feedItem) {

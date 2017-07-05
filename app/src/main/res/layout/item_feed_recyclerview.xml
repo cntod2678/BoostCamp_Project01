@@ -5,7 +5,8 @@
     android:id="@+id/feed_cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
     card_view:cardCornerRadius="5dp">
 
     <LinearLayout
@@ -28,14 +29,26 @@
                 android:layout_centerVertical="true"
                 android:scaleType="fitCenter"/>
 
-            <TextView
-                android:id="@+id/cardView_item_userId_txtView"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_toRightOf="@id/cardView_item_profile_imgView"
                 android:layout_centerVertical="true"
-                android:textStyle="bold"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cardView_item_userId_txtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="시간"
+                    android:textColor="#cccccc"/>
+            </LinearLayout>
             
             <ImageButton
                 android:layout_width="@dimen/like_img_size"
@@ -87,28 +100,52 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+
         <!-- For ImgButton to act like, share, comment -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageButton
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:drawableLeft="@drawable/like_small"
+                android:paddingLeft="18dp"
+                android:drawablePadding="-18dp"
+                android:text="좋아요"
+                android:background="@color/transparent"/>
 
-            <ImageButton
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingLeft="18dp"
+                android:drawablePadding="-18dp"
+                android:drawableLeft="@drawable/comment"
+                android:text="댓글 달기"
+                android:background="@color/transparent"/>
 
-            <ImageButton
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingLeft="18dp"
+                android:drawablePadding="-18dp"
+                android:drawableLeft="@drawable/share"
+                android:text="공유하기"
+                android:background="@color/transparent"/>
         </LinearLayout>
-        
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
