@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Project1</string>
+
+    <!-- MainActivity -->
+    <string name="search">  검색</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">15dp</dimen>
+
+    <!-- cardView -->
+    <dimen name="profile_img_size">56dp</dimen>
+    <dimen name="profile_img_margin">8dp</dimen>
+    <dimen name="like_img_size">24dp</dimen>
+
+    <dimen name="title_size">24sp</dimen>
+
+</resources>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/feed_cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Profile -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            
+            <ImageView
+                android:id="@+id/cardView_item_profile_imgView"
+                android:layout_width="@dimen/profile_img_size"
+                android:layout_height="@dimen/profile_img_size"
+                android:layout_margin="@dimen/profile_img_margin"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:id="@+id/cardView_item_userId_txtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toRightOf="@id/cardView_item_profile_imgView"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"/>
+            
+            <ImageButton
+                android:layout_width="@dimen/like_img_size"
+                android:layout_height="@dimen/like_img_size"
+                android:layout_margin="@dimen/profile_img_margin"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/like_selector"
+                android:scaleType="centerInside"
+                android:background="@color/transparent"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/cardView_item_title_txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="@dimen/title_size"/>
+
+        <ImageView
+            android:id="@+id/cardView_item_imgView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitCenter"/>
+
+        <!-- The number of likes, comments -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-24dp"
+                android:layout_gravity="left"
+                android:src="@drawable/emotion"/>
+
+            <TextView
+                android:id="@+id/cardView_item_likeCnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="100dp"/>
+
+            <TextView
+                android:id="@+id/cardView_item_commentCnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- For ImgButton to act like, share, comment -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+
