@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import company.co.kr.project1.Feed.FeedFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout mainTabLayout;
@@ -63,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                if(tab.getPosition() == 0) {
+                    FeedFragment.moveToTop();
+                }
             }
         });
     }
@@ -74,4 +78,13 @@ public class MainActivity extends AppCompatActivity {
         mainTabLayout.getTabAt(2).setIcon(R.drawable.notification_selector);
         mainTabLayout.getTabAt(3).setIcon(R.drawable.menu_selector);
     }
+
+    public void onCameraButtonClicked(View view) {
+        Toast.makeText(getApplicationContext(), "카메라 버튼 클릭입니다.", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onMessageButtonClicked(View view) {
+        Toast.makeText(getApplicationContext(), "메세지 버튼 클릭입니다.", Toast.LENGTH_SHORT).show();
+    }
+
 }

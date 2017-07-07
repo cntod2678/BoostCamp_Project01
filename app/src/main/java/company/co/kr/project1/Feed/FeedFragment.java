@@ -16,11 +16,11 @@ import company.co.kr.project1.R;
 
 public class FeedFragment extends Fragment {
 
-    RecyclerView feedRecyclerView;
+    static RecyclerView feedRecyclerView;
     List<FeedItem> feedItemList = new ArrayList<>();
 
 
-//    public FeedItem(String type, String user_id, String title, String content, int imgSrc, int like, int comment) {
+    //    public FeedItem(String type, String user_id, String title, String content, int imgSrc, int like, int comment) {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,5 +45,9 @@ public class FeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         feedRecyclerView.setLayoutManager(layoutManager);
         feedRecyclerView.setAdapter(feedAdapter);
+    }
+
+    public static void moveToTop() {
+        feedRecyclerView.smoothScrollToPosition(0);
     }
 }

@@ -17,7 +17,7 @@
         <!-- Profile -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:layout_gravity="center_vertical">
             
             <ImageView
@@ -53,7 +53,7 @@
             <ImageButton
                 android:layout_width="@dimen/like_img_size"
                 android:layout_height="@dimen/like_img_size"
-                android:layout_margin="@dimen/profile_img_margin"
+                android:layout_marginRight="@dimen/like_right_margin"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/like_selector"
@@ -65,40 +65,46 @@
             android:id="@+id/cardView_item_title_txtView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:textSize="@dimen/title_size"/>
 
         <ImageView
             android:id="@+id/cardView_item_imgView"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:scaleType="fitCenter"/>
+            android:scaleType="centerInside"/>
 
         <!-- The number of likes, comments -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_marginBottom="8dp">
 
             <ImageView
+                android:id="@+id/cardView_item_emotion_imgView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="-24dp"
                 android:layout_gravity="left"
-                android:src="@drawable/emotion"/>
+                android:src="@drawable/emotion" />
 
             <TextView
                 android:id="@+id/cardView_item_likeCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="100dp"/>
+                android:layout_toRightOf="@id/cardView_item_emotion_imgView"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="-32dp"/>
 
             <TextView
                 android:id="@+id/cardView_item_commentCnt"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"/>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -114,6 +120,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/cardView_item_like_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -122,9 +129,11 @@
                 android:paddingLeft="18dp"
                 android:drawablePadding="-18dp"
                 android:text="좋아요"
-                android:background="@color/transparent"/>
+                android:background="@color/transparent"
+                android:onClick="onLikeClicked"/>
 
             <Button
+                android:id="@+id/cardView_item_comment_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -136,6 +145,7 @@
                 android:background="@color/transparent"/>
 
             <Button
+                android:id="@+id/cardView_item_share_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

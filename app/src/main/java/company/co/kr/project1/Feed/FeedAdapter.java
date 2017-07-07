@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import company.co.kr.project1.Feed.Header.HeaderProfileAdapter;
+import company.co.kr.project1.Feed.Item.HeaderMakeViewHolder;
+import company.co.kr.project1.Feed.Item.HeaderProfileViewHolder;
+import company.co.kr.project1.Feed.Item.ItemViewHolder;
 import company.co.kr.project1.R;
 
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -45,7 +48,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == TYPE_HEADER_PROFILE) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_feed_profile, parent, false);
-            HeaderProfileViewHolder headerProfileViewHolder = new HeaderProfileViewHolder(view);
+            HeaderProfileViewHolder headerProfileViewHolder = new HeaderProfileViewHolder(mContext, view, header_user_list);
 
             return headerProfileViewHolder;
         }
@@ -57,7 +60,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         else if(viewType == TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_feed_recyclerview, parent, false);
-            ItemViewHolder vi = new ItemViewHolder(view);
+            ItemViewHolder vi = new ItemViewHolder(mContext, view);
 
             return vi;
         }
@@ -77,12 +80,12 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         else {
             // ItemViewHolder
-            ItemViewHolder ivh = (ItemViewHolder) holder;
-            ivh.bind(feedItemList.get(position-2));
+            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+            itemViewHolder.bind(feedItemList.get(position-2));
         }
     }
 
-    /* Returns viewType for a given position (Header or Item) */
+    /* Return viewType for a given position (Header or Item) */
     @Override
     public int getItemViewType(int position) {
         if (getTypePosition(position) == TYPE_HEADER_PROFILE)
@@ -105,55 +108,5 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return TYPE_HEADER_MAKE;
         else
             return TYPE_ITEM;
-    }
-
-    class HeaderProfileViewHolder extends RecyclerView.ViewHolder {
-        private RecyclerView header_profile_recyclerView;
-
-        public HeaderProfileViewHolder(View headerProfileView) {
-            super(headerProfileView);
-            header_profile_recyclerView = (RecyclerView) headerProfileView.findViewById(R.id.header_recyclerView);
-
-            HeaderProfileAdapter headerAdapter = new HeaderProfileAdapter(mContext, header_user_list);
-
-            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-            header_profile_recyclerView.setLayoutManager(layoutManager);
-            header_profile_recyclerView.setAdapter(headerAdapter);
-        }
-    }
-
-    class HeaderMakeViewHolder extends RecyclerView.ViewHolder {
-        private ImageView header_make_profile;
-        private TextView txtView;
-
-        public HeaderMakeViewHolder(View headerMakeView) {
-            super(headerMakeView);
-        }
-
-        public void bind() {
-        }
-    }
-
-    class ItemViewHolder extends RecyclerView.ViewHolder {
-        private ImageView cardView_item_profile_imgView;
-        private TextView cardView_item_userId_txtView;
-
-        private TextView cardView_item_title_txtView;
-        private ImageView cardView_item_imgView;
-
-        public ItemViewHolder(View itemView) {
-            super(itemView);
-            cardView_item_profile_imgView = (ImageView) itemView.findViewById(R.id.cardView_item_profile_imgView);
-            cardView_item_userId_txtView = (TextView) itemView.findViewById(R.id.cardView_item_userId_txtView);
-            cardView_item_title_txtView = (TextView) itemView.findViewById(R.id.cardView_item_title_txtView);
-            cardView_item_imgView = (ImageView) itemView.findViewById(R.id.cardView_item_imgView);
-        }
-
-        public void bind(FeedItem feedItem) {
-            cardView_item_profile_imgView.setImageResource(feedItem.getProfileImg());
-            cardView_item_userId_txtView.setText(feedItem.getUser_id());
-            cardView_item_title_txtView.setText(feedItem.getTitle());
-            cardView_item_imgView.setImageResource(feedItem.getImgSrc());
-        }
     }
 }

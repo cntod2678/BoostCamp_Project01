@@ -9,7 +9,6 @@
         android:layout_width="@dimen/profile_list_item_size"
         android:layout_height="@dimen/profile_list_item_size"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:scaleType="centerInside"
         android:background="@color/transparent"/>
@@ -19,7 +18,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginTop="-8dp"
         android:text="User" />
 </LinearLayout>
