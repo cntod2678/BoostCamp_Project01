@@ -19,8 +19,6 @@ public class FeedFragment extends Fragment {
     static RecyclerView feedRecyclerView;
     List<FeedItem> feedItemList = new ArrayList<>();
 
-
-    //    public FeedItem(String type, String user_id, String title, String content, int imgSrc, int like, int comment) {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

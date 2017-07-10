@@ -7,12 +7,9 @@ import android.view.View;
 
 import java.util.List;
 
-import company.co.kr.project1.Feed.Header.HeaderProfileAdapter;
+import company.co.kr.project1.Feed.HeaderMessage.HeaderProfileAdapter;
 import company.co.kr.project1.R;
 
-/**
- * Created by Dongjin on 2017. 7. 7..
- */
 
 public class HeaderProfileViewHolder extends RecyclerView.ViewHolder {
     private RecyclerView header_profile_recyclerView;

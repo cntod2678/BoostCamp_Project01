@@ -33,7 +33,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:text="무슨 생각을 하고 계신가요"
+                    android:text="무슨 생각을 하고 계신가요?"
                     android:textColor="#cccccc"
                     android:gravity="left|center_vertical"
                     android:background="@color/transparent"/>

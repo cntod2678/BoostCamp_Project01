@@ -1,4 +1,4 @@
-package company.co.kr.project1.Feed.Header;
+package company.co.kr.project1.Feed.HeaderMessage;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -40,7 +40,7 @@ public class HeaderProfileAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         else if(viewType == TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header_profile_feed, parent, false);
-            HeaderItemViewHolder headerItemViewHolder = new HeaderItemViewHolder(view);
+            HeaderMessageItemViewHolder headerItemViewHolder = new HeaderMessageItemViewHolder(view);
 
             return headerItemViewHolder;
         }
@@ -53,7 +53,7 @@ public class HeaderProfileAdapter extends RecyclerView.Adapter<RecyclerView.View
             HeaderMessageHeaderViewHolder headerMessageHeaderViewHolder = (HeaderMessageHeaderViewHolder) holder;
 
         } else {
-            HeaderItemViewHolder headerItemViewHolder = (HeaderItemViewHolder) holder;
+            HeaderMessageItemViewHolder headerItemViewHolder = (HeaderMessageItemViewHolder) holder;
             Picasso.with(mContext)
                     .load(user_list.get(position-1))
                     .resize(152, 152)
